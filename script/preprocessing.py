@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import spacy
 import re
+import os
 
 from spacy.cli import download
 download("en_core_web_sm")
@@ -43,10 +44,9 @@ def clean_text(text):
     
     return " ".join(tokens)
 
-    return cleaned
-
 file_path = '../data/raw/reviews.csv'
 output_path = '../data/processed/cleaned_reviews.csv'
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
 df = pd.read_csv(file_path)
 

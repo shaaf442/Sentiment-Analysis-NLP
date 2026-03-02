@@ -11,6 +11,9 @@ import os
 file_path = '../data/processed/cleaned_reviews.csv'
 df = pd.read_csv(file_path)
 
+# Models downlaoding
+os.makedirs("../models", exist_ok=True)
+
 # CountVectorizer
 cv = CountVectorizer(stop_words='english', min_df=2, token_pattern=r'[A-Za-z]+')
 dtm = cv.fit_transform(df['Review Text'])
@@ -66,8 +69,6 @@ print("\n----- ML SENTIMENT RESULTS -----")
 print("Accuracy:", accuracy_score(y_test, pred_sentiment))
 
 
-# Models downlaoding
-os.makedirs("../models", exist_ok=True)
 
 # Save models
 joblib.dump(sentiment_model, "../models/sentiment_model.pkl")
